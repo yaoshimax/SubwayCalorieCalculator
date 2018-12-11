@@ -3,7 +3,7 @@ React-native app to caluculate calorie of a regular size of sandwich.
 All the menus are in Japanese.
 
 ## Demo
-![](TODO)
+<img src="https://github.com/yaoshimax/SubwayCalorieCalculator/blob/movie/movie/demo.gif" width="200px">
 
 ## Usage
 

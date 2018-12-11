@@ -8,7 +8,6 @@ class SingleMenu extends React.Component {
    }
    render(){
       let itemList = this.props.items;
-      console.log(itemList);
       let key = 0;
       let selectedItem = "";
       pickerItem = itemList.map(function(item){
@@ -16,7 +15,6 @@ class SingleMenu extends React.Component {
          if(item.selected===true){
             selectedItem = item.name;
          }
-         console.log(name);
          key++;
          return(<Picker.Item label={name} value={name} key={key}/>)}
       );
@@ -48,23 +46,14 @@ class MultiMenu extends React.Component {
       key=0
       multipleSelectItem = itemList.map(function(item){
          name = item.name;
-         console.log(name);
          key++;
          return({name: name, id: key})}
       );
-      console.log(multipleSelectItem);
-      let data1 = {id: 'hoge', name:'hoge'};
-      let data2 = {id: 'fuga', name:'fuga'};
-      let testItems = [{id: 'hoge', name:'hoge'}, {id: 'fuga', name:'fuga'}];
       let selectedItems = itemList.filter(item => item.selected == true);
       let notselectedItems = itemList.filter(item => item.selected != true);
-      console.log("selected:" +selectedItems);
-      console.log("not selected:")
-      console.log(notselectedItems);
       let afterCancel = this.props.afterCancel;
       let Label = selectedItems.map(function(item){
                      let fun = () => afterCancel(item.name);
-                     console.log(fun);
                      return(<LabelSelect.Label
                               key={item.name}
                               data={item}
@@ -111,7 +100,6 @@ class Result extends React.Component {
          let itemList = menu[key];
          for(index in itemList){
             let item = itemList[index]
-            console.log("result");
             if(item.selected == true){
                if( item.calorie) totalCalorie += item.calorie;
                if( item.cost) totalCost += item.cost;
@@ -201,7 +189,6 @@ export default class App extends React.Component {
   }
 
   updateSingleMenu(key, selectedItemName){
-     console.log(key);
      let items = this.state.menus[key];
      nextItems = items.map(function(item){
         if(item.name == selectedItemName){
@@ -214,12 +201,10 @@ export default class App extends React.Component {
      })
      let nextMenu = this.state.menus;
      nextMenu[key] = nextItems;
-     console.log(nextItems);
      this.setState({menus: nextMenu})
   }
 
   updateMultiMenu(key, itemList){
-     console.log(key);
      let items = this.state.menus[key];
      let nextItems = items.map(function(item){
                           if(itemList.includes(item)){
@@ -229,11 +214,9 @@ export default class App extends React.Component {
                        });
      let nextMenu = this.state.menus;
      nextMenu[key] = nextItems;
-     console.log(nextItems);
      this.setState({menus: nextMenu})
   }
   cancelMultiMenu(key, itemName){
-     console.log(key);
      let items = this.state.menus[key];
      let nextItems = items.map(function(item){
                           if(item.name===itemName){
@@ -243,7 +226,6 @@ export default class App extends React.Component {
                        });
      let nextMenu = this.state.menus;
      nextMenu[key] = nextItems;
-     console.log(nextItems);
      this.setState({menus: nextMenu})
   }
   renderSingleMenu(itemKey){
